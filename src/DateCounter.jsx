@@ -5,15 +5,15 @@ function DateCounter() {
   const [step, setStep] = useState(1);
 
   // This mutates the date object.
-  const date = new Date("june 21 2027");
+  const date = new Date("march 20 2025");
   date.setDate(date.getDate() + count);
 
-  const dec = function () {
+  const decrease = function () {
     // setCount((count) => count - 1);
     setCount((count) => count - step);
   };
 
-  const inc = function () {
+  const increase = function () {
     // setCount((count) => count + 1);
     setCount((count) => count + step);
   };
@@ -39,9 +39,9 @@ function DateCounter() {
       </div>
 
       <div>
-        <button onClick={dec}>-</button>
+        <button onClick={decrease}>-</button>
         <input value={count} onChange={defineCount} />
-        <button onClick={inc}>+</button>
+        <button onClick={increase}>+</button>
       </div>
 
       <p>{date.toDateString()}</p>
