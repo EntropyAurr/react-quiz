@@ -31,7 +31,7 @@ export default function DateCounter() {
   const { count, step } = state;
 
   // This mutates the date object.
-  const date = new Date("march 20 2025");
+  const date = new Date();
   date.setDate(date.getDate() + count);
 
   const decrease = function () {
@@ -43,7 +43,7 @@ export default function DateCounter() {
   };
 
   const defineCount = function (e) {
-    dispatch({ type: "setCount", payload: Number(e.target.value) });
+    dispatch({ type: "setCount", payload: Number(e.target.value) }); /* payload: input data */
   };
 
   const defineStep = function (e) {

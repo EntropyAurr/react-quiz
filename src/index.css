@@ -4,7 +4,7 @@
   --color-medium: #ced4da;
   --color-light: #f1f3f5;
 
-  --color-theme: #1098ad;
+  --color-theme: #0ead69;
   --color-accent: #ffa94d;
 }
 
@@ -129,6 +129,7 @@ progress {
 
 .btn:not([disabled]):hover {
   background-color: var(--color-darkest);
+  color: #fff;
 }
 
 .btn-option:not([disabled]):hover {
@@ -153,16 +154,17 @@ progress {
 .btn-option {
   width: 100%;
   text-align: left;
+  margin-top: 1.2rem;
 }
 
 .btn-option.correct {
   background-color: var(--color-theme);
-  border: 2px solid var(--color-theme);
+  border: 2px solid #fff;
   color: var(--color-light);
 }
 .btn-option.wrong {
   background-color: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  border: 2px solid #fff;
   color: var(--color-darkest);
 }
 
