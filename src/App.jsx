@@ -1,3 +1,4 @@
+import { useEffect, useReducer } from "react";
 import Headers from "./components/Header";
 import Main from "./components/Main";
 import Loader from "./components/Loader";
@@ -9,7 +10,6 @@ import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
 import Timer from "./components/Timer";
-import { useEffect, useReducer } from "react";
 
 const initialState = {
   questions: [],
