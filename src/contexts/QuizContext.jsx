@@ -5,8 +5,8 @@ const QuizContext = createContext();
 const SECS_PER_QUESTION = 30;
 
 const initialState = {
-  questions: [],
   status: "loading",
+  questions: [],
   questIndex: 0,
   answer: null,
   currentPoints: 0,
@@ -50,7 +50,7 @@ function reducer(state, action) {
 }
 
 function QuizProvider({ children }) {
-  const [{ questions, status, questIndex, answer, currentPoints, highscore, secondsRemaining }, dispatch] = useReducer(reducer, initialState);
+  const [{ status, questions, questIndex, answer, currentPoints, highscore, secondsRemaining }, dispatch] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
   const maxPossiblePoints = questions.reduce((acc, cur) => acc + cur.points, 0); // cur: current element in the questions array (each question object inside questions array)
@@ -65,24 +65,51 @@ function QuizProvider({ children }) {
   function Start() {
     dispatch({ type: "start" });
   }
+
   function Answer(index) {
     dispatch({ type: "newAnswer", payload: index });
+  }
+
+  function CountTime() {
+    useEffect(function () {
+      const id = setInterval(function () {
+        dispatch({ type: "tick" });
+      }, 1000);
+
+      return () => clearInterval(id);
+    }, []);
+  }
+
+  function NextQuestion() {
+    dispatch({ type: "nextQuestion" });
+  }
+
+  function Finish() {
+    dispatch({ type: "finish" });
+  }
+
+  function Restart() {
+    dispatch({ type: "restart" });
   }
 
   return (
     <QuizContext.Provider
       value={{
-        questions,
         status,
+        questions,
         questIndex,
         answer,
+        numQuestions,
         currentPoints,
+        maxPossiblePoints,
         highscore,
         secondsRemaining,
-        numQuestions,
-        maxPossiblePoints,
         Start,
         Answer,
+        CountTime,
+        NextQuestion,
+        Finish,
+        Restart,
       }}
     >
       {children}
@@ -96,6 +123,8 @@ function useQuiz() {
   if (context === undefined) {
     throw new Error("QuizContext was used outside the QuizProvider.");
   }
+
+  return context;
 }
 
 export { QuizProvider, useQuiz };

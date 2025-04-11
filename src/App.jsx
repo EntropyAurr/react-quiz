@@ -25,15 +25,15 @@ export default function App() {
         {status === "active" && (
           <>
             <Progress />
-            <Question question={questions[questIndex]} dispatch={dispatch} answer={answer} />
+            <Question />
             <Footer>
-              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
-              <NextButton dispatch={dispatch} answer={answer} questIndex={questIndex} numQuestions={numQuestions} />
+              <Timer />
+              <NextButton />
             </Footer>
           </>
         )}
 
-        {status === "finished" && <FinishScreen currentPoints={currentPoints} maxPossiblePoints={maxPossiblePoints} highscore={highscore} dispatch={dispatch} />}
+        {status === "finished" && <FinishScreen />}
       </Main>
     </div>
   );
